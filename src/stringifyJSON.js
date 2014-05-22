@@ -21,7 +21,7 @@ var stringifyJSON = function(obj) {
         // } else {
         //   result.push('"' + String(prop) + '": ' + stringifyJSON(obj[prop]));
         // }
-        result.push(obj[prop]);
+        result.push(stringifyJSON(obj[prop]));
       }
     }
     var resConverted;
