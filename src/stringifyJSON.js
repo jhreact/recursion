@@ -12,26 +12,24 @@ var stringifyJSON = function(obj) {
   } else if (objType === 'object') {
     var result = [];
     for (var prop in obj) {
-      if (Array.isArray(obj)) {
-        result.push(stringifyJSON(obj[prop]));
-      } else {
-        var hashStr = stringifyJSON(prop) + ':' + stringifyJSON(obj[prop]);
-        // console.log(hashStr);
-        result.push(hashStr);
+      if (typeof obj[prop] !== 'function' && obj[prop] !== undefined) {
+        if (Array.isArray(obj)) {
+          result.push(stringifyJSON(obj[prop]));
+        } else {
+          var hashStr = stringifyJSON(prop) + ':' + stringifyJSON(obj[prop]);
+          // console.log(hashStr);
+          result.push(hashStr);
+        }
       }
     }
     var resConverted;
     if (result) {
       resConverted = result.join(',');
     }
-    console.log(resConverted);
     if (Array.isArray(obj)) {
       return '[' + resConverted + ']';
     } else {
       return '{' + resConverted + '}';
     }
-    // Pass
-    // console.log(objType);
-    // console.log(obj);
   }
 };
