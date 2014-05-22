@@ -12,7 +12,6 @@ var stringifyJSON = function(obj) {
   } else if (objType === 'object') {
     var result = [];
     for (var prop in obj) {
-      var elemType = typeof obj[prop];
       if (Array.isArray(obj)) {
         result.push(stringifyJSON(obj[prop]));
       } else {
