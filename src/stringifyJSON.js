@@ -13,15 +13,12 @@ var stringifyJSON = function(obj) {
     var result = [];
     for (var prop in obj) {
       var elemType = typeof obj[prop];
-      if (elemType !== 'object') {
+      if (Array.isArray(obj)) {
         result.push(stringifyJSON(obj[prop]));
       } else {
-        // if (Array.isArray(obj)) {
-        //   result.push(stringifyJSON(obj[prop]));
-        // } else {
-        //   result.push('"' + String(prop) + '": ' + stringifyJSON(obj[prop]));
-        // }
-        result.push(stringifyJSON(obj[prop]));
+        var hashStr = stringifyJSON(prop) + ':' + stringifyJSON(obj[prop]);
+        // console.log(hashStr);
+        result.push(hashStr);
       }
     }
     var resConverted;
